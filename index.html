@@ -15,27 +15,45 @@
 </head>
 <body>
     <div class="m-16">
-        <!-- WebhookURL -->
+
+        <!-- WebhookURL Section -->
         <div class="webhookURL pb-10">
+            <!-- WebhookURL Label -->
             <label class="block text-2xl mb-3 text-[#656C76] montserrat font-[600]">WebhookURL</label>
+
+            <!-- WebhookURL Input Container -->
             <div class="webhookURLBox relative flex items-center w-1/3 bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat">
+                <!-- WebhookURL Link Icon -->
                 <i class="webhook-link-icon text-[#707681] text-3xl fas fa-link p-4"></i>
+
+                <!-- WebhookURL Input -->
                 <input type="text" id="webhookUrl" name="webhookUrl" class="w-full h-12 bg-transparent outline-none" placeholder="https://discord.com/api/webhooks/..." autocomplete="off">
+
+                <!-- WebhookURL Delete Button -->
                 <button id="deleteButton" class="py-2.5 px-4 mr-3 bg-[#2c2f36] text-[#555A63] rounded-md hover:text-[#3A3E47]">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
+
+            <!-- WebhookURL Add Button -->
             <button id="addButton" class="w-1/3 bg-[#363A43] py-2.5 my-5 px-4 mr-3 bg-transparent text-[#555A63] hover:bg-[#2F3239] rounded-md outline-dashed outline-2">
                 <i class="fas fa-plus text-2xl"></i>
             </button>
         </div>
-        <!-- Avatar -->
+
+        <!-- Avatar Section -->
         <div class="avatar pb-10">
+            <!-- Avatar Label -->
             <label class="block text-2xl mb-3 text-[#656C76] montserrat font-[600]">Avatar</label>
+
+            <!-- Avatar Content Container -->
             <div class="flex flex-col pb-10">
+                <!-- Avatar Accordion Button -->
                 <button id="accordion-button" class="accordion-button shadow relative flex items-center w-1/3 bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat">
                     <i id="chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>Avatar
                 </button>
+
+                <!-- Avatar Accordion Content -->
                 <div id="accordionContent" class="hidden relative flex flex-col w-1/3 text-2xl rounded-lg montserrat space-y-4 p-4">
                     <!-- Avatar Username -->
                     <label class="block text-2xl text-[#656C76] montserrat font-[600]">Username<span id="avatarCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/80</span></label>
@@ -43,6 +61,7 @@
                         <input type="text" id="avatarInput" name="avatarInput" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Username" autocomplete="off">
                         <i class="avatar-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-align-left"></i>
                     </div>
+
                     <!-- Avatar URL -->
                     <label class="block text-2xl text-[#656C76] montserrat font-[600]">Avatar URL</label>
                     <div class="relative flex items-center w-full">
@@ -52,6 +71,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Message Content -->
         <div class="messageContent pb-10">
             <label class="block text-2xl mb-3 text-[#656C76] montserrat font-[600]">Message Content<span id="messageCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/2000</span></label>
@@ -59,6 +79,7 @@
                 <textarea type="text" id="message-content" name="message-content" class="w-full bg-transparent outline-none" placeholder="Enter message content." autocomplete="off" rows="4" style="min-height: 1.5em;"></textarea>
             </div>
         </div>
+
         <!-- Embed -->
         <div class="embed pb-10">
             <label class="block text-2xl mb-3 text-[#656C76] montserrat font-[600]">Embed</label>
@@ -69,34 +90,45 @@
                     <p>Embed</p>
                 </button>
                 <div id="accordionContent-embed" class="hidden relative flex flex-col w-1/3 text-2xl rounded-lg montserrat space-y-4 p-4">
-                    <!-- Author -->
+
+                    <!-- Author Accordion Button -->
                     <button id="author-accordion-button" class="shadow author-accordion-button relative flex items-center bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat">
                         <i id="author-chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>
                         <p>Author</p>
                     </button>
+                    <!-- Author Accordion Content -->
                     <div id="accordionContent-author" class="hidden relative flex flex-col text-2xl rounded-lg montserrat space-y-4 p-4">
-                        <!-- Row 1 -->
-                        <label class="block text-2xl text-[#656C76] montserrat font-[600]">Author<span id="authorCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/256</span></label>
-                        <textarea id="authorInput" name="authorInput" class="shadow w-full p-5 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none my-4" placeholder="Author" autocomplete="off" rows="1" style="min-height: 3em;"></textarea>
-                        <!-- Row 2 -->
+                        <!-- Author Row 1 -->
+                        <label class="block text-2xl text-[#656C76] montserrat font-[600]">Author Text<span id="authorCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/256</span></label>
+                        <div class="relative flex items-center w-full">
+                            <input type="text" id="authorInput" name="authorInput" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none w-full" placeholder="Author Text" autocomplete="off">
+                            <i class="author-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-align-left"></i>
+                        </div>
+
+                        <!-- Author Row 2 -->
                         <div class="relative flex items-center space-x-4 my-4">
+                            <!-- Author URL -->
                             <div class="relative flex items-center w-full">
                                 <input type="text" id="authorUrl" name="authorUrl" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Author URL" autocomplete="off">
                                 <i class="author-link-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-link"></i>
                             </div>
+
+                            <!-- Author Image URL -->
                             <div class="relative flex items-center w-full">
                                 <input type="text" id="authorImageUrl" name="authorImageUrl" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Author Image URL" autocomplete="off">
                                 <i class="author-image-icon absolute top-5 left-5 text-[#707681] text-2xl fa-solid fa-image"></i>
                             </div>
                         </div>
                     </div>
-                    <!-- Content -->
+
+                    <!-- Content Accordion Button -->
                     <button id="content-accordion-button" class="shadow content-accordion-button relative flex items-center bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat">
                         <i id="content-chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>
                         <p>Content</p>
                     </button>
+                    <!-- Content Accordion Content -->
                     <div id="accordionContent-content" class="hidden relative flex flex-col text-2xl rounded-lg montserrat space-y-4 p-4">
-                        <!-- Row 1 -->
+                        <!-- Content Row 1 - Title -->
                         <label class="block text-2xl text-[#656C76] montserrat font-[600]">Title<span id="titleCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/256</span></label>
                         <div class="shadow relative flex items-center space-x-4 my-4">
                             <div class="relative flex items-center w-full">
@@ -104,7 +136,8 @@
                                 <i id="title-icon" class="title-icon absolute top-5 left-5 text-[#707681] text-2xl fa-solid fa-heading"></i>
                             </div>
                         </div>
-                        <!-- Row 2 -->
+
+                        <!-- Content Row 2 - Description -->
                         <label class="block text-2xl text-[#656C76] montserrat font-[600]">Description<span id="descriptionCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/4096</span></label>
                         <div class="shadow relative flex items-center space-x-4 my-4">
                             <div class="relative flex items-center w-full">
@@ -112,14 +145,16 @@
                                 <i id="description-icon" class="description-icon absolute top-5 left-5 text-[#707681] text-2xl fa-solid fa-align-left"></i>
                             </div>
                         </div>
+
                         <!-- URL and Color Row -->
                         <div class="flex items-center space-x-4 my-4">
-                            <!-- URL -->
+                            <!-- Content URL -->
                             <div class="relative flex items-center w-full">
                                 <input type="text" id="contentUrlInput" name="contentUrlInput" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="URL" autocomplete="off">
                                 <i class="contentUrl-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-link"></i>
                             </div>
-                            <!-- Color -->
+
+                            <!-- Content Color -->
                             <div class="relative flex items-center w-full">
                                 <input type="text" id="contentColorInput" maxlength="6" name="contentColorInput" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg mr-3 bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="HEX" autocomplete="off">
                                 <i class="contentColor-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-hashtag"></i>
@@ -127,13 +162,71 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Images -->
+
+                    <!-- Fields Accordion Container -->
+                    <div class="fields-accordion-container">
+                        <!-- Fields Accordion Button -->
+                        <button id="fields-accordion-button" class="shadow fields-accordion-button-full-width relative flex items-center bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat w-full">
+                            <i id="fields-chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>
+                            <label class="block">Fields</label>
+                        </button>
+                    
+                        <!-- Fields Accordion Content -->
+                        <div id="accordionContent-fields" class="hidden relative flex flex-col text-2xl rounded-lg montserrat space-y-4 p-4">
+                            <!-- Counter and Action Buttons -->
+                            <div class="flex items-center mb-2">
+                                <div class="bg-[#3A3E48] text-2xl py-3 px-4 rounded-md">
+                                    <span class="text-[#D9D9D9] montserrat font-medium text-xl">1/24 Components</span>
+                                </div>
+                                <div class="ml-auto flex space-x-4">
+                                    <button id="deleteFieldButton" class="bg-[#3A3E48] text-[#D9D9D9] rounded-md hover:text-[#AEAEAE] text-2xl py-3 px-4">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button id="addFieldButton" class="bg-[#3A3E48] text-[#D9D9D9] text-2xl hover:text-[#AEAEAE] py-3 px-4 rounded-md">
+                                        <i class="fas fa-plus pr-2"></i>
+                                        <span>Add Field</span>
+                                    </button>
+                                </div>
+                            </div>
+                    
+                            <!-- Cloned Field Template -->
+                            <div class="fields-template">
+                                <button id="clonedField-accordion-button" class="shadow clonedField-accordion-button relative flex items-center bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat w-full">
+                                    <i id="clonedField-chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>
+                                    <label class="block">Field 1</label>
+                                </button>
+                    
+                                <!-- Cloned Field Template -->
+                                <div id="accordionContent-clonedField" class="hidden relative flex flex-col text-2xl rounded-lg montserrat space-y-4 p-4">
+
+                                    <!-- Field Name -->
+                                    <label class="block text-2xl text-[#656C76] montserrat font-[600]">Field Name<span id="clonedFieldNameCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/256</span></label>
+                                    <div class="relative flex items-center w-full">
+                                        <textarea id="clonedFieldNameInput" name="clonedFieldNameInput" class="flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Field Name" autocomplete="off" rows="1" style="min-height: 3em;"></textarea>
+                                        <i id="clonedFieldName-icon" class="clonedFieldName-icon absolute top-5 left-5 text-[#707681] text-2xl fa-solid fa-text-width"></i>
+                                    </div>
+
+                                    <!-- Field Value -->
+                                    <label class="block text-2xl text-[#656C76] montserrat font-[600]">Field Value<span id="clonedFieldValueCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/1024</span></label>
+                                    <div class="relative flex items-center w-full">
+                                        <textarea id="clonedFieldValueInput" name="clonedFieldValueInput" class="flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Field Value" autocomplete="off" rows="1" style="min-height: 3em;"></textarea>
+                                        <i id="clonedFieldValue-icon" class="clonedFieldValue-icon absolute top-5 left-5 text-[#707681] text-2xl fa-solid fa-pencil"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> 
+
+                    <!-- Images Accordion Button -->
                     <button id="image-accordion-button" class="shadow image-accordion-button relative flex items-center bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat">
                         <i id="image-chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>
                         <label class="block">Images</label>
                     </button>
+                    <!-- Images Accordion Content -->
                     <div id="accordionContent-image" class="hidden relative flex flex-col text-2xl rounded-lg montserrat space-y-4 p-4">
-                        <!-- Container -->
+                        <!-- Images Container -->
                         <div class="flex items-center mb-2">
                             <div class="bg-[#3A3E48] text-2xl py-3 px-4 rounded-md">
                                 <span id="imageUrlCharCounter" class="text-[#D9D9D9] montserrat font-medium text-xl">1/4 Components</span>
@@ -148,21 +241,55 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="image-container">
-                            <!-- Image URL -->
-                            <div class="relative flex items-center w-full mb-5">
-                                <input type="text" id="imageUrlInput" class="image-url-input shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Image URL" autocomplete="off">
-                                <i class="image-url-icon absolute top-1/2 transform -translate-y-1/2 left-5 text-[#707681] text-2xl fa-solid fa-image"></i>
+
+                        <!-- Image URL Input -->
+                        <div class="relative flex items-center w-full mb-5">
+                            <input type="text" id="imageUrlInput" class="image-url-input shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none" placeholder="Image URL" autocomplete="off">
+                            <i class="image-url-icon absolute top-1/2 transform -translate-y-1/2 left-5 text-[#707681] text-2xl fa-solid fa-image"></i>
+                        </div>
+                    </div>
+
+                    <!-- Footer Accordion Button -->
+                    <button id="footer-accordion-button" class="shadow footer-accordion-button relative flex items-center bg-[#363A43] text-[#ADB5C2] text-2xl rounded-lg montserrat">
+                        <i id="footer-chevronIcon" class="text-[#707681] text-3xl fa-solid fa-chevron-down p-4"></i>
+                        <p>Footer</p>
+                    </button>
+
+                    <!-- Footer Accordion Content -->
+                    <div id="accordionContent-footer" class="hidden relative flex flex-col w-full text-2xl rounded-lg montserrat space-y-4 p-4">
+                        <!-- Footer Text -->
+                        <label class="block text-2xl text-[#656C76] montserrat font-[600]">Footer Text<span id="footerCharCounter" class="text-[#ADB5C2] text-xl ml-3">0/2048</span></label>
+                        <div class="relative flex items-center w-full">
+                            <input type="text" id="footerInput" name="footerInput" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none w-full" placeholder="Footer Text" autocomplete="off">
+                            <i class="footer-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-align-left"></i>
+                        </div>
+
+                        <!-- Timestamp and Footer Icon URL -->
+                        <div class="flex items-center space-x-4">
+                            <!-- Timestamp -->
+                            <div class="relative flex items-center w-full">
+                                <input type="text" id="timestampInput" name="timestampInput" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none w-full" placeholder="YYYY MM DD hh:mm" autocomplete="off">
+                                <i class="timestamp-icon absolute top-5 left-5 text-[#707681] text-2xl fas fa-clock"></i>
+                            </div>
+
+                            <!-- Footer Icon URL -->
+                            <div class="relative flex items-center w-full">
+                                <input type="text" id="footerIconUrl" name="footerIconUrl" class="shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none w-full" placeholder="Footer Icon URL" autocomplete="off">
+                                <i class="footer-icon-url absolute top-5 left-5 text-[#707681] text-2xl fas fa-image"></i>
                             </div>
                         </div>
                     </div>
+
+                   
                 </div>
             </div>
         </div>
+
         <!-- Send Button -->
         <div class="sendButton">
             <button id="sendMessageButton" class="py-2.5 px-4 bg-[#359553] text-white text-2xl rounded-md">Send Message</button>
         </div>
+        
     </div>
     <!-- Pickr Color -->
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>

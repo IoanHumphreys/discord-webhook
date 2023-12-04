@@ -1,28 +1,33 @@
+// Setup Icons
+function setupInputIconListener(inputElement, icon) {
+    inputElement.addEventListener("input", function () {
+        const inputText = inputElement.value.trim();
+        icon.style.color = inputText ? "#359553" : "#707681";
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Helper function to set up input icon listener
-    function setupInputIconListener(inputElement, icon) {
-        inputElement.addEventListener("input", function () {
-            const inputText = inputElement.value.trim();
-            icon.style.color = inputText ? "#359553" : "#707681";
-        });
-    }
-
-    // Array of input elements and corresponding icons
+    // Inputs
     const inputs = [
         { element: "webhookUrl", icon: ".webhook-link-icon" },
         { element: "avatarInput", icon: ".avatar-icon" },
         { element: "avatarUrlInput", icon: ".avatar-url-icon" },
+        { element: "authorInput", icon: ".author-icon" },
         { element: "authorUrl", icon: ".author-link-icon" },
         { element: "authorImageUrl", icon: ".author-image-icon" },
         { element: "titleInput", icon: ".title-icon" },
         { element: "descriptionInput", icon: ".description-icon" },
         { element: "contentUrlInput", icon:".contentUrl-icon" },
         { element: "contentColorInput", icon: ".contentColor-icon" },
-        { element: "imageUrlInput", icon: ".image-url-icon" }
+        { element: "imageUrlInput", icon: ".image-url-icon" },
+        { element: "clonedFieldNameInput", icon: ".clonedFieldName-icon" },
+        { element: "clonedFieldValueInput", icon: ".clonedFieldValue-icon" },
+        { element: "footerInput", icon: ".footer-icon" },
+        { element: "footerIconUrl", icon: ".footer-icon-url" }
     ];
 
-    // Set up input icon listeners
+    // Icon Icon Listener
     inputs.forEach(input => {
         const inputElement = document.getElementById(input.element);
         const icon = document.querySelector(input.icon);
@@ -31,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Helper function to set up accordion
+    // Setup Accordion
     function setupAccordion(buttonId, contentId, chevronId) {
         const button = document.getElementById(buttonId);
         const content = document.getElementById(contentId);
@@ -53,14 +58,18 @@ document.addEventListener("DOMContentLoaded", function () {
         { button: "embed-accordion-button", content: "accordionContent-embed", chevron: "embed-chevronIcon" },
         { button: "author-accordion-button", content: "accordionContent-author", chevron: "author-chevronIcon" },
         { button: "content-accordion-button", content: "accordionContent-content", chevron: "content-chevronIcon" },
-        { button: "image-accordion-button", content: "accordionContent-image", chevron: "content-chevronIcon" }
+        { button: "image-accordion-button", content: "accordionContent-image", chevron: "content-chevronIcon" },
+        { button: "fields-accordion-button", content: "accordionContent-fields", chevron: "content-chevronIcon" },
+        { button: "clonedField-accordion-button", content: "accordionContent-clonedField", chevron: "content-chevronIcon" },
+        { button: "footer-accordion-button", content: "accordionContent-footer", chevron: "content-chevronIcon" },
     ];
 
+    // Loop Through
     accordions.forEach(acc => {
         setupAccordion(acc.button, acc.content, acc.chevron);
     });
 
-    // Helper function to set up character limit
+    // Char Limit
     function setupCharacterLimit(inputId, counterId, maxChars) {
         const input = document.getElementById(inputId);
         const counter = document.getElementById(counterId);
@@ -78,20 +87,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Set up character limits
+    // Setup Char Limit
     const characterLimits = [
         { input: "avatarInput", counter: "avatarCharCounter", maxChars: 80 },
         { input: "message-content", counter: "messageCharCounter", maxChars: 2000 },
         { input: "authorInput", counter: "authorCharCounter", maxChars: 256 },
         { input: "titleInput", counter: "titleCharCounter", maxChars: 256 },
         { input: "descriptionInput", counter: "descriptionCharCounter", maxChars: 4096 },
+        { input: "clonedFieldNameInput", counter: "clonedFieldNameCharCounter", maxChars: 256 },
+        { input: "clonedFieldValueInput", counter: "clonedFieldValueCharCounter", maxChars: 1024 },
+        { input: "footerInput", counter: "footerCharCounter", maxChars: 2048 },
     ];
 
+    // Loop Through
     characterLimits.forEach(limit => {
         setupCharacterLimit(limit.input, limit.counter, limit.maxChars);
     });
 
-    // Helper function to set up text area auto-resize
+    // Setup AutoResize
     function setupTextAreaAutoResize(textAreaId) {
         const textArea = document.getElementById(textAreaId);
         if (textArea) {
@@ -103,56 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // TextArea Resize
-    ["message-content", "avatarUrlInput", "authorInput", "titleInput", "descriptionInput"].forEach(area => {
+    ["message-content", "avatarUrlInput", "authorInput", "titleInput", "descriptionInput", "clonedFieldNameInput", "clonedFieldValueInput"].forEach(area => {
         setupTextAreaAutoResize(area);
     });
-
-    // Update Component Count
-    function updateComponentsText() {
-        const imageContainer = document.querySelector(".image-container");
-        const componentsText = document.getElementById("imageUrlCharCounter");
-    
-        if (imageContainer && componentsText) {
-            componentsText.textContent = `${imageContainer.childElementCount}/4 Components`;
-        }
-    }
-    
-    const addComponentButton = document.getElementById("addComponentButton");
-    
-    addComponentButton && addComponentButton.addEventListener("click", function () {
-        const imageContainer = document.querySelector(".image-container");
-    
-        if (imageContainer && imageContainer.childElementCount < 4) {
-            const newComponentContainer = document.createElement("div");
-            newComponentContainer.className = "relative flex items-center w-full mb-5";
-    
-            const newInput = document.createElement("input");
-            newInput.type = "text";
-            newInput.className = "image-url-input shadow flex-1 p-5 pl-16 pr-4 rounded-lg bg-[#363A43] text-[#ADB5C2] outline-none";
-            newInput.placeholder = "Image URL";
-            newInput.autocomplete = "off";
-    
-            const newIcon = document.createElement("i");
-            newIcon.className = "image-url-icon absolute top-1/2 transform -translate-y-1/2 left-5 text-[#707681] text-2xl fa-solid fa-image";
-    
-            newComponentContainer.appendChild(newInput);
-            newComponentContainer.appendChild(newIcon);
-    
-            imageContainer.appendChild(newComponentContainer);
-    
-            updateComponentsText();
-        }
-    });
-    
-    const removeComponentButton = document.getElementById("deleteComponentButton");
-    
-    removeComponentButton && removeComponentButton.addEventListener("click", function () {
-        const imageContainer = document.querySelector(".image-container");
-        const lastComponent = imageContainer?.lastElementChild;
-    
-        lastComponent && imageContainer.childElementCount > 1 && (lastComponent.remove(), updateComponentsText());
-    });
-    
 
     // Send Webhook
     document.getElementById("sendMessageButton").addEventListener("click", function () {
@@ -163,34 +129,37 @@ document.addEventListener("DOMContentLoaded", function () {
             "authorInput",
             "authorUrl",
             "authorImageUrl",
-            "avatarUrlInput",
             "titleInput",
             "descriptionInput",
             "contentUrlInput",
             "contentColorInput",
-            "imageUrlInput"
+            "imageUrlInput",
+            "clonedFieldNameInput",
+            "clonedFieldValueInput",
+            "footerInput",
+            "footerIconUrl"
         ];
-    
+
         // Check if all required fields exist
         const missingField = requiredFields.find(field => !document.getElementById(field));
         if (missingField) {
             alert(`Element with ID '${missingField}' not found.`);
             return;
         }
-    
-        // Check if at least one of the required fields has a non-empty value
+
+        // Checks if one is empty
         const hasRequiredField = requiredFields.some(field => document.getElementById(field).value.trim() !== "");
-    
+
         if (!hasRequiredField) {
             alert("Please provide at least one of the required fields.");
             return;
         }
-    
+
         const payload = {
             content: document.getElementById("message-content").value,
             embeds: []
         };
-    
+
         const embedFields = [
             "authorInput",
             "authorUrl",
@@ -200,22 +169,18 @@ document.addEventListener("DOMContentLoaded", function () {
             "descriptionInput",
             "contentUrlInput",
             "contentColorInput",
-            "imageUrlInput"
+            "imageUrlInput",
+            "clonedFieldNameInput",
+            "clonedFieldValueInput",
+            "footerInput",
+            "footerIconUrl"
         ];
-    
-        // Check if all embed fields exist
-        const missingEmbedField = embedFields.find(field => !document.getElementById(field));
-        if (missingEmbedField) {
-            alert(`Element with ID '${missingEmbedField}' not found.`);
-            return;
-        }
-    
+
         const hasEmbedField = embedFields.some(field => document.getElementById(field).value.trim() !== "");
-    
+
         if (hasEmbedField) {
             const contentColorInput = document.getElementById("contentColorInput").value;
-            const imageUrl = document.getElementById("imageUrlInput").value;
-    
+
             payload.embeds.push({
                 title: document.getElementById("titleInput").value,
                 description: document.getElementById("descriptionInput").value,
@@ -227,17 +192,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     icon_url: document.getElementById("authorImageUrl").value
                 },
                 image: {
-                    url: imageUrl,
+                    url: document.getElementById("imageUrlInput").value,
                 },
-            });            
+                fields: [
+                    {
+                        name: document.getElementById("clonedFieldNameInput").value,
+                        value: document.getElementById("clonedFieldValueInput").value
+                    }
+                ],
+                footer: {
+                    text: document.getElementById("footerInput").value,
+                    icon_url: document.getElementById("footerIconUrl").value,
+                }
+            });           
         }
-    
+
         const webhookUrl = document.getElementById("webhookUrl").value;
         if (!webhookUrl) {
             alert("Please provide a webhook URL.");
             return;
         }
-    
+
         fetch(webhookUrl, {
             method: 'POST',
             headers: {
@@ -247,12 +222,27 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             console.log('Response:', response);
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-        })        
+    
+            // Check if the response has JSON content
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return response.json();
+            } else {
+                return Promise.resolve({});
+            }
+        })
+        .then(data => console.log('Discord Response:', data))
         .catch(error => {
             console.error('Error sending message:', error);
-        });
-    });    
+    
+            // Print the response if available
+            if (error.response) {
+                error.response.json().then(data => console.error('Discord API Response:', data));
+            }
+        });   
+    });  
 });
